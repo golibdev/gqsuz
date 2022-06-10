@@ -1,0 +1,278 @@
+<style>
+   .ck-content {
+      height: 250px !important;
+   }
+
+   @media (max-width: 768px) {
+      .table {
+         width: 900px !important;
+      }
+   }
+</style>
+
+{{> adminHeader}}
+<div id="layoutSidenav">
+   {{> adminSidebar}}
+   <div id="layoutSidenav_content">
+      <main>
+         <div class="container-fluid px-4">
+            <div class="d-flex align-items-center justify-content-between">
+               <div>
+                  <h1 class="mt-4">Yangiliklar</h1>
+                  <ol class="breadcrumb mb-4">
+                     <li class="breadcrumb-item active">
+                        <a href="/dashboard" class="text-dark" style="text-decoration: none;">Asosiy sahifa</a>
+                     </li>
+                  </ol>
+               </div>
+               <div>
+                  <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addNews">
+                     Yangilik qo'shish
+                  </button>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-12">
+                  <div class="card bg-dark text-white mb-4 p-3">
+                     <div class="card-body">
+                        <h3 class="card-title mb-0">Yangiliklar: {{count}} ta</h3>
+                     </div>
+                  </div>
+               </div>
+               <div class="table-responsive">
+                  <table class="table table-hover text-center">
+                     <thead>
+                        <tr>
+                           <th>image</th>
+                           <th>ru title</th>
+                           <th>uz title</th>
+                           <th>Funksiyalar</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        {{#each news}}
+                        <tr>
+                           <td>
+                              <img src="{{image}}" alt="{{title}}" class="img-fluid" style="width: 100px;">
+                           </td>
+                           <td>{{ruTitle}}</td>
+                           <td>{{uzTitle}}</td>
+                           <td>
+                              <div class="d-flex aling-items-center justify-content-center">
+                                 <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editNews{{_id}}">
+                                    <i class="fas fa-pen"></i>
+                                 </button>
+                                 <div class="modal fade" id="editNews{{_id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-xl">
+                                       <div class="modal-content">
+                                          <div class="modal-header">
+                                             <h5 class="modal-title" id="exampleModalLabel">
+                                                Tahrirlash
+                                             </h5>
+                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                          </div>
+                                          <div class="modal-body">
+                                             <form action="/update/{{_id}}" method="post" enctype="multipart/form-data">
+                                                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                                   <li class="nav-item" role="presentation">
+                                                      <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Russian</button>
+                                                   </li>
+                                                   <li class="nav-item" role="presentation">
+                                                      <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Uzbek</button>
+                                                   </li>
+                                                </ul>
+                                                <div class="tab-content" id="myTabContent">
+                                                   <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                                      <div class="form-group">
+                                                         <label for="ruTitle" class="mb-3 mt-2 d-block text-start">Заголовок</label>
+                                                         <input class="form-control" id="ruTitle" name="ruTitle" type="text" placeholder="Заголовок" value="{{ruTitle}}">
+                                                      </div>
+                                                      <div class="form-group d-block">
+                                                         <label for="image" class="mt-2 d-block text-start">Rasm</label> <br>
+                                                         <input class="form-control" id="image" name="image" type="file">
+                                                      </div>
+                                                      <div class="form-group">
+                                                         <label for="ruContent" class="mb-3  d-block text-start">Текст</label>
+                                                         <textarea class="form-control" id="ruContent" name="ruContent" rows="5" placeholder="Текст">{{ruContent}}</textarea>
+                                                      </div>
+                                                   </div>
+                                                   <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                                      <div class="form-group">
+                                                         <label for="uzTitle" class="mb-3 mt-2 d-block text-start">Sarlavha</label>
+                                                         <input class="form-control" id="uzTitle" name="uzTitle" type="text" placeholder="Sarlavha" value="{{uzTitle}}">
+                                                      </div>
+                                                      <div class="form-group">
+                                                         <label for="uzContent" class="mb-3 d-block text-start">Matn</label>
+                                                         <textarea class="form-control" id="uzContent" name="uzContent" rows="15" placeholder="Matn">{{uzContent}}</textarea>
+                                                      </div>
+                                                   </div>
+                                                </div>
+
+                                                <button class="btn btn-primary d-block text-start">
+                                                   Saqlash
+                                                </button>
+                                             </form>
+                                          </div>
+                                          <div class="modal-footer">
+                                             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteNews{{_id}}">
+                                    <i class="fas fa-trash-alt"></i>
+                                 </button>
+                                 <div class="modal fade" id="deleteNews{{_id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                       <div class="modal-content">
+                                          <div class="modal-header">
+                                             <h5 class="modal-title" id="exampleModalLabel">
+                                                Rostan ham oc'hirishni istaysizmi?
+                                             </h5>
+                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                          </div>
+                                          <div class="modal-body">
+                                             <div class="d-flex align-items-center justify-content-center">
+                                                <form action="/delete/{{_id}}" method="post">
+                                                <button class="btn btn-danger">
+                                                   Ha
+                                                   </button>
+                                                </form>
+                                                <button type="button" class="btn btn-success" data-bs-dismiss="modal">Yo'q</button>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </td>
+                        </tr>
+                        {{/each}}
+                     </tbody>
+                  </table>
+               </div>
+               <nav class="mt-3">
+                  <ul class="pagination">
+                     {{#paginate pagination type="previous"}}
+                        <li {{#if disabled}}class="page-item disabled"{{/if}}>
+                           <a href="?page={{n}}" class="page-link">
+                              <i class="fas fa-angle-double-left"></i>
+                           </a>
+                        </li>
+                     {{/paginate}}
+                     {{#paginate pagination type="middle"}}
+                        <li {{#if active}}class="page-item active"{{/if}}>
+                           <a href="?page={{n}}" class="page-link  ">{{n}}</a>
+                        </li>
+                     {{/paginate}}
+                     {{#paginate pagination type="next"}}
+                        <li {{#if disabled}}class="page-item disabled"{{/if}}>
+                           <a href="?page={{n}}" class="page-link">
+                              <i class="fas fa-angle-double-right"></i>
+                           </a>
+                        </li>
+                     {{/paginate}}
+                  </ul>
+               </nav>
+            </div>
+         </div>
+      </main>
+   </div>
+</div>
+
+<div class="modal fade" id="addNews" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+   <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">
+               Yangilik qo'shish
+            </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+         </div>
+         <div class="modal-body">
+            <form action="/addNews" method="post" enctype="multipart/form-data">
+               <ul class="nav nav-tabs" id="myTab" role="tablist">
+                  <li class="nav-item" role="presentation">
+                     <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#ru" type="button" role="tab" aria-controls="home" aria-selected="true">Russian</button>
+                  </li>
+                  <li class="nav-item" role="presentation">
+                     <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#uz" type="button" role="tab" aria-controls="profile" aria-selected="false">Uzbek</button>
+                  </li>
+               </ul>
+               <div class="tab-content" id="myTabContent">
+                  <div class="tab-pane fade show active" id="ru" role="tabpanel" aria-labelledby="home-tab">
+                     <div class="form-group">
+                        <label for="ruTitle" class="mb-3 mt-2">Заголовок</label>
+                        <input class="form-control" id="ruTitle" name="ruTitle" type="text" placeholder="Заголовок">
+                     </div>
+                     <div class="form-group">
+                        <label for="image" class="mb-3 mt-2">Rasm</label> <br>
+                        <input class="form-control-file" id="image" name="image" type="file">
+                     </div>
+                     <div class="form-group">
+                        <label for="ruContent" class="mb-3">Текст</label>
+                        <textarea class="form-control" id="rusContent" name="ruContent" rows="5" placeholder="Текст"></textarea>
+                     </div>
+                  </div>
+                  <div class="tab-pane fade" id="uz" role="tabpanel" aria-labelledby="profile-tab">
+                     <div class="form-group">
+                        <label for="uzTitle" class="mb-3 mt-2">Sarlavha</label>
+                        <input class="form-control" id="uzTitle" name="uzTitle" type="text" placeholder="Sarlavha">
+                     </div>
+                     <div class="form-group">
+                        <label for="uzContent" class="mb-3">Matn</label>
+                        <textarea class="form-control" id="uzbekContent" name="uzContent" rows="15" placeholder="Matn"></textarea>
+                     </div>
+                  </div>
+               </div>
+
+               <button class="btn btn-primary">
+                  Saqlash
+               </button>
+            </form>
+         </div>
+         <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+         </div>
+      </div>
+   </div>
+</div>
+
+<script src="https://cdn.ckeditor.com/ckeditor5/34.1.0/classic/ckeditor.js"></script>
+<script>
+   ClassicEditor
+      .create( document.querySelector( '#ruContent' ) )
+      .then( editor => {
+         console.log( editor );
+      })
+      .catch(error => {
+         console.error( error );
+      });
+      
+   ClassicEditor
+      .create( document.querySelector( '#uzContent' ) )
+      .then( editor => {
+         console.log( editor );
+      })
+      .catch(error => {
+         console.error( error );
+      });
+
+   ClassicEditor
+      .create( document.querySelector( '#rusContent' ) )
+      .then( editor => {
+         console.log( editor );
+      })
+      .catch(error => {
+         console.error( error );
+      });
+      
+   ClassicEditor
+      .create( document.querySelector( '#uzbekContent' ) )
+      .then( editor => {
+         console.log( editor );
+      })
+      .catch(error => {
+         console.error( error );
+      });
+</script>

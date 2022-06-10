@@ -1,0 +1,37 @@
+<style>
+
+   #card {
+      position: relative;
+      top: 1%
+   }
+
+   .content p {
+      line-height: 25px !important;
+   }
+</style>
+
+{{> navbar}}
+
+<div class="container">
+   <div class="row">
+      <div class="col-12" id="card">
+         <div id="card">
+            <img src="{{news.image}}" alt="{{news.ruTitle}}">
+            <div>
+               {{#ifEquals lang "ru"}}
+                  <h3 class="card-title mt-2">{{news.ruTitle}}</h3>
+               {{else}}
+                  <h3 class="card-title mt-2">{{news.uzTitle}}</h3>
+               {{/ifEquals}}
+            </div>
+            <div class="content">
+               {{#ifEquals lang "ru"}}
+                  {{{news.ruContent}}}
+               {{else}}
+                  {{{news.uzContent}}}
+               {{/ifEquals}}
+            </div>
+         </div>
+      </div>
+   </div>
+</div>

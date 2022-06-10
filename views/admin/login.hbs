@@ -1,0 +1,70 @@
+<style>
+   #login-card {
+      position: relative !important;
+      height: 100vh !important;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+   }
+</style>
+
+{{> navbar}}
+
+<div id="login-card">
+   <div class="container">
+      {{#if err}}
+         <div class="alert alert-danger">
+            {{err}}
+         </div>
+      {{/if}}
+      <div class="row">
+         <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-sm-10 offset-sm-1 col-12">
+            <form action="/auth/login" method="post" class="card shadow">
+
+               <div class="card-header text-center bg-white">
+                  <h3 class="card-title fw-bold">
+                     {{#ifEquals lang "ru"}}
+                        Вход
+                     {{else}}
+                        Kirish
+                     {{/ifEquals}}
+                  </h3>
+               </div>
+
+               <div class="card-body">
+                  <div class="form-group">
+                     <label for="login">
+                        {{#ifEquals lang "uz"}}
+                           Foydalanuvchi nomi
+                        {{else}}
+                           Имя пользователя
+                        {{/ifEquals}}
+                     </label>
+                     <input type="text" class="form-control" id="login" name="username" placeholder="{{#ifEquals lang "ru"}}Имя пользователя{{else}}Foydalanuvchi nomi{{/ifEquals}}">
+                  </div>
+                  <div class="form-group">
+                     <label for="password">
+                        {{#ifEquals lang "ru"}}
+                           Пароль
+                        {{else}}
+                           Parol
+                        {{/ifEquals}}
+                     </label>
+                     <input type="password" class="form-control" id="password" name="password" placeholder="{{#ifEquals lang "ru"}}Пароль{{else}}Parol{{/ifEquals}}">
+                  </div>
+               </div>
+
+               <div class="card-footer">
+                  <button type="submit" class="btn btn-primary d-block w-100 btn-block">
+                     {{#ifEquals lang "ru"}}
+                        Войти
+                     {{else}}
+                        Kirish
+                     {{/ifEquals}}
+                  </button>
+               </div>
+            </form>
+         </div>
+      </div>
+   </div>   
+</div>

@@ -1,0 +1,55 @@
+<section data-bs-version="5.1" class="content2 mb-3 mt-3" id="content2-e">
+   <div class="container">
+      <div class="mbr-section-head">
+         <h4 class="mbr-section-title mbr-fonts-style align-center mb-0 display-6">
+            <strong>
+               {{#ifEquals lang 'ru'}}
+                  Новости
+               {{else}}
+                  Yangiliklar
+               {{/ifEquals}}
+            </strong>
+         </h4>
+      </div>
+      <div class="row mt-4">
+         {{#ifEquals lang "ru"}}
+            {{#each news}}
+               <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                  <div class="card shadow">
+                     <div class="card-body">
+                        <img src="{{image}}" alt="{{ruTitle}}">
+                        <h6 class="card-title mt-2">{{ruTitle}}</h6>
+                        <p>{{sliceTitle ruContent}}</p>
+                        <a href="/news/{{ruSlugUrl}}" class="btn btn-primary">Подробнее</a>
+                     </div>
+                  </div>
+               </div>
+            {{/each}}
+         {{else}}
+            {{#each news}}
+               <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                  <div class="card shadow">
+                     <div class="card-body">
+                        <img src="{{image}}" class="img-fluid" alt="{{uzTitle}}">
+                        <h6 class="card-title mt-2">{{uzTitle}}</h6>
+                        <p>{{sliceTitle uzContent}}</p>
+                        <a href="/news/{{uzSlugUrl}}" class="btn btn-primary">Batafsil</a>
+                     </div>
+                  </div>
+               </div>
+            {{/each}}
+         {{/ifEquals}}
+      </div>
+      <div class="row mt-4 text-center">
+         <div class="col-12">
+            <a href="/news" class="btn btn-outline-primary">
+               {{#ifEquals lang "ru"}}
+                  Все новости
+               {{else}}
+                  Barcha yangiliklar
+               {{/ifEquals}}
+            </a>
+         </div>
+      </div>
+   </div>
+</section>

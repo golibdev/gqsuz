@@ -1,0 +1,36 @@
+{
+   "name": "elektron-kutubxona",
+   "version": "1.0.0",
+   "description": "Elektron kutubxona",
+   "main": "server.js",
+   "scripts": {
+      "start": "node server",
+      "dev": "nodemon server"
+   },
+   "keywords": [
+      "node",
+      "mongodb",
+      "express"
+   ],
+   "author": "G'olib Narzullayev <gnarzullayev2000@gmail.com>",
+   "license": "ISC",
+   "dependencies": {
+      "bcryptjs": "^2.4.3",
+      "connect-mongodb-session": "^3.1.0",
+      "crypto-js": "^4.1.1",
+      "dotenv": "^10.0.0",
+      "express": "^4.17.1",
+      "express-fileupload": "^1.2.1",
+      "express-flash": "0.0.2",
+      "express-handlebars": "^5.3.4",
+      "express-session": "^1.17.2",
+      "handlebars": "^4.7.7",
+      "handlebars-paginate": "^0.1.0",
+      "moment": "^2.29.1",
+      "mongoose": "^6.3.5",
+      "slugify": "^1.6.5"
+   },
+   "devDependencies": {
+      "nodemon": "^2.0.13"
+   }
+}
