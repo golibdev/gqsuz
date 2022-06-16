@@ -19,6 +19,10 @@
       font-weight: bold !important;
    }
 
+   .hamburger span {
+      background-color: #fff !important;
+   }
+
    @media (max-width: 991.98px) {
       .dropdown-menu {
          position: absolute !important;
@@ -32,11 +36,13 @@
    }
 </style>
 
-<section data-bs-version="5.1" class="menu menu3 cid-sFAA5oUu2Y" once="menu" id="menu3-1">
-   <nav class="navbar navbar-dropdown navbar-expand-lg">
+<section data-bs-version="5.1" class="menu menu3 cid-sFAA5oUu2Y" once="menu" id="menu3-1" style="position: fixed !important; top: 0 !important; z-index: 9999999999 !important; width: 100% !important;">
+   <nav class="navbar navbar-dropdown navbar-expand-lg bg-dark">
       <div class="container">
          <div class="navbar-brand"> 
-            <img src="/assets/images/logo.png" style="width: 200px !important;" alt="">
+            <a href="/">
+               <img src="/assets/images/logo.png" style="width: 200px !important;" alt="">
+            </a>
          </div>
          <button class="navbar-toggler" type="button" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbarSupportedContent" data-bs-target="#navbarSupportedContent" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <div class="hamburger">
@@ -49,7 +55,7 @@
          <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true">
                <li class="nav-item">
-                  <a class="nav-link link text-primary display-7" href="#about">
+                  <a class="nav-link link text-primary display-7" href="/#about">
                      {{#ifEquals lang "ru"}}
                         О компании
                      {{else}}
