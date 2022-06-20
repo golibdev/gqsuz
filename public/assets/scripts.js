@@ -22,5 +22,15 @@ window.addEventListener('DOMContentLoaded', event => {
             localStorage.setItem('sb|sidebar-toggle', document.body.classList.contains('sb-sidenav-toggled'));
         });
     }
+    
+    const btnOrders = document.querySelectorAll('.btn-orders'),
+        textArea = document.querySelector('#textarea-form5-0')
+
+    btnOrders.forEach(btn => {
+        btn.addEventListener('click', event => {
+            const code = event.target.dataset.id
+            textArea.value = `Maxsulot kodi: ${code}`
+        })
+    })
 
 });
